@@ -1,18 +1,39 @@
+
+
 output "learn_rg" {
-  value       = azurerm_resource_group.learn.name
+  value       = resource.rustack_project.project.name
   description = "Main resource group"
   depends_on  = []
 }
 
 output "learn_user" {
-  value       = azuread_user.learn.user_principal_name
+  value       = data.external.user.result.login
   description = "Main User"
   depends_on  = []
 }
 
 output "learn_password" {
-  value       = azuread_user.learn.password
+  value       = data.external.user.result.password
   description = "Main Password"
   sensitive = true
   depends_on  = []
 }
+
+/*
+
+
+
+output "dynamic-params" {
+  value = {
+    "${var.lab_instance}-${var.prefix}"= {
+      "project_id" = resource.rustack_project.project.id
+      "project_name" = resource.rustack_project.project.name
+
+    }
+  }
+}
+
+
+
+
+*/
