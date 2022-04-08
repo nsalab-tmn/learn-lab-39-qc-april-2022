@@ -1,7 +1,7 @@
 
 
 output "learn_rg" {
-  value       = resource.rustack_project.project.name
+  value       = "https://${random_string.learn.result}.${var.lab_instance}.${var.dns_root}"
   description = "Main resource group"
   depends_on  = []
 }
@@ -15,8 +15,15 @@ output "learn_user" {
 output "learn_password" {
   value       = data.external.user.result.password
   description = "Main Password"
-  sensitive = true
+  sensitive = false
   depends_on  = []
+}
+
+output "web_service" {
+  value       = data.external.web_service_availability.result
+  depends_on  = [
+    data.external.web_service_availability
+  ]
 }
 
 /*

@@ -1,9 +1,10 @@
+
 resource "rustack_vm" "ubuntu16" {
     vdc_id = resource.rustack_vdc.vdc.id
 
     name = "EVE-NG"
-    cpu = 2
-    ram = 4
+    cpu = 1
+    ram = 2
 
     template_id = data.rustack_template.ubuntu16.id
 
@@ -35,3 +36,5 @@ resource "rustack_vm" "ubuntu16" {
         resource.rustack_router.default_router,
     ]
 }
+
+
