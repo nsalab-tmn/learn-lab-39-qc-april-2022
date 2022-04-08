@@ -1,4 +1,5 @@
 deploy/.terraform.lock.hcl
 deploy/.terraform
 deploy/terraform.tfstate
-deploy/terraform.tfstate.backup
+deploy/terraform.tfstate.*
+deploy/user_data.tpl
