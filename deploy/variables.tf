@@ -3,7 +3,11 @@ variable prefix {
 }
 
 variable lab_instance {
-  default = "ncd-39"
+  default = "qc22"
+}
+
+variable dns_root {
+  default = "skillscloud.company"
 }
 
 variable "rustack_admin_token" {
