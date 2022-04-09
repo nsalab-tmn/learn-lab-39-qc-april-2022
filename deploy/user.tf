@@ -1,7 +1,7 @@
 resource "null_resource" "user_provisioner" {
 
     provisioner "local-exec" {
-        command = "bash user_provisioner.sh"
+        command = "/bin/bash user_provisioner.sh"
 
         environment = {
             endpoint = "${var.rustack_api_endpoint}"
@@ -18,7 +18,7 @@ resource "null_resource" "user_provisioner" {
     }
 
     provisioner "local-exec" {
-        command = "bash user_deprovisioner.sh"
+        command = "/bin/bash user_deprovisioner.sh"
         when = destroy
    }
 

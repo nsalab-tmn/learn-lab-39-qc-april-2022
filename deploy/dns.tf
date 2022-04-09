@@ -1,7 +1,7 @@
 resource "null_resource" "dns_provisioner" {
 
     provisioner "local-exec" {
-        command = "bash dns_provisioner.sh"
+        command = "/bin/bash dns_provisioner.sh"
 
         environment = {
             endpoint    = "${var.rustack_api_endpoint}"
@@ -13,7 +13,7 @@ resource "null_resource" "dns_provisioner" {
     }
 
     provisioner "local-exec" {
-        command = "bash dns_deprovisioner.sh"
+        command = "/bin/bash dns_deprovisioner.sh"
         when = destroy
    }
 
