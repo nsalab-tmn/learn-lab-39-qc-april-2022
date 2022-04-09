@@ -3,8 +3,8 @@ resource "rustack_vm" "ubuntu16" {
     vdc_id = resource.rustack_vdc.vdc.id
 
     name = "EVE-NG"
-    cpu = 1
-    ram = 2
+    cpu = 2
+    ram = 4
 
     template_id = data.rustack_template.ubuntu16.id
 

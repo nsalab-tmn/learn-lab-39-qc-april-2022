@@ -3,7 +3,7 @@ data "external" "web_service_availability" {
 
   query = {
     url         = "https://${random_string.learn.result}.${var.lab_instance}.${var.dns_root}"
-    filter      = "EVE"
+    filter      = "200 OK"
     counter     = 200
     sleep       = 5
   }
