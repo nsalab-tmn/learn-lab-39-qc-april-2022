@@ -1,7 +1,7 @@
 {
     "title": "Поиск и устранение неисправностей в информационной инфраструктуре",
     "shortName": "qc22-tshoot",
-    "materialType": "lab",
+    "materialType": "lab-exam",
     "description": "Конкурсное задание отборочного чемпионата на право участие в финале национального чемпионата Молодые Профессионалы в 2022 году",
     "assessmentPath": "./assessment/marking-scheme.json",
     "deploymentPath": "deploy",
