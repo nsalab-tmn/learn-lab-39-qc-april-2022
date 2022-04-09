@@ -17,7 +17,5 @@ resource "random_string" "learn" {
   special          = false
   min_lower        = 2
   min_numeric      = 2
-  min_upper        = 2
-  min_special      = 1
-  override_special = "a"
+  upper            = false
 }
