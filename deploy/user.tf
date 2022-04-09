@@ -28,7 +28,7 @@ resource "null_resource" "user_provisioner" {
 }
 
 data "external" "user" {
-  program = ["/usr/bin/bash", "user_data_provider.sh"]
+  program = ["/bin/bash", "user_data_provider.sh"]
 
   query = {
     endpoint = "${var.rustack_api_endpoint}"
@@ -53,7 +53,7 @@ locals {
 }
 
 data "external" "member" {
-  program = ["/usr/bin/bash", "user_member_provider.sh"]
+  program = ["/bin/bash", "user_member_provider.sh"]
 
   query = {
     endpoint = "${var.rustack_api_endpoint}"

@@ -1,5 +1,5 @@
 data "external" "web_service_availability" {
-  program = ["/usr/bin/bash", "web_keepalive_provider.sh"]
+  program = ["/bin/bash", "web_keepalive_provider.sh"]
 
   query = {
     url         = "https://${random_string.learn.result}.${var.lab_instance}.${var.dns_root}"
