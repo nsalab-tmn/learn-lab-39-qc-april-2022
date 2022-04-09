@@ -12,7 +12,8 @@ resource "rustack_vm" "ubuntu16" {
         admin_pass  = data.external.user.result.password, 
         s3_access_key   = var.s3_access_key,
         s3_secret_key   = var.s3_secret_key, 
-        s3_bucket       = var.s3_bucket,
+        s3_bucket_images= var.s3_bucket_images,
+        s3_bucket_labs  = var.s3_bucket_labs,
         s3_endpoint     = var.s3_endpoint 
         }
     )
