@@ -55,12 +55,12 @@ variable "s3_endpoint" {
 
 variable "s3_bucket_images" {
     type        = string
-    default     = "nsalab/images/${var.lab_instance}"
+    default     = "nsalab/images/qc22"
 }
 
 variable "s3_bucket_labs" {
     type        = string
-    default     = "nsalab/eve-labs/${var.lab_instance}"
+    default     = "nsalab/eve-labs/qc22"
 }
 
 variable "s3_access_key" {
