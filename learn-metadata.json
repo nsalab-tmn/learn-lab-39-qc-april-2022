@@ -1,8 +1,8 @@
 {
-    "title": "Sample lab",
-    "shortName": "smpl_lab",
+    "title": "Поиск и устранение неисправностей в информационной инфраструктуре",
+    "shortName": "qc22-tshoot",
     "materialType": "lab",
-    "description": "Sample description",
+    "description": "Конкурсное задание отборочного чемпионата на право участие в финале национального чемпионата Молодые Профессионалы в 2022 году",
     "assessmentPath": "./assessment/marking-scheme.json",
     "deploymentPath": "deploy",
     "testProjectPath": "testProject.md",
@@ -39,13 +39,13 @@
         },
         "consoleURL": {
             "title": "Адрес портала",
-            "value": "https://portal.azure.com"
+            "source": "learn_rg"
         }
     },
-    "duration": "PT3H30M",
+    "duration": "PT8H00M",
     "difficulty": 10,
     "tags": [
-        "Azure", "SampleTag"
+        "Молодые профессионалы", "Worldskills", "Сетевое и системное администрирование"
     ],
     "skills": {}
 }
