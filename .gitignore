@@ -3,3 +3,4 @@ deploy/.terraform
 deploy/terraform.tfstate
 deploy/terraform.tfstate.*
 deploy/user_data.tpl
+deploy/1
