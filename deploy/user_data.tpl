@@ -19,7 +19,7 @@ chpasswd:
     root:${admin_pass}
   expire: false
 write_files:
-- path: /opt/ovf/ovfconfig.sh
+- path: /opt/ovfconfig.sh
   content: |
     #!/bin/bash
 
@@ -47,7 +47,25 @@ write_files:
       bridge_ports eth0
       bridge_stp off
       dns-nameservers 8.8.8.8 8.8.4.4
+    iface eth1 inet manual
+    auto pnet1
+    iface pnet1 inet manual
+        bridge_ports eth1
+        bridge_stp off
+        address 10.0.138.1
+        netmask 255.255.255.0
+        up ifconfig pnet1 10.0.138.1/24
+
     EOF
+
+    
+    DEBIAN_FRONTEND=noninteractive apt-get install iptables-persistent -y
+
+    iptables -t nat -A POSTROUTING -s 10.0.138.0/24 -o pnet0 -j MASQUERADE
+    iptables-save > /etc/iptables/rules.v4
+
+    echo net.ipv4.ip_forward=1 >> /etc/sysctl.conf
+    sysctl -p
 
     service networking restart
 
@@ -73,9 +91,10 @@ write_files:
         
     bash /opt/install-eve.sh > /opt/install-eve.out 2>&1
     bash /opt/eve-bootstrap.sh > /opt/eve-bootstrap.out 2>&1
+    rm -f /opt/ovf/ovfconfig.sh
     bash /opt/install-nginx.sh > /opt/install-nginx.out 2>&1
     #bash /opt/get-images.sh > /opt/get-images.out 2>&1    
-    bash /opt/ovf/ovfconfig.sh > /opt/ovfconfig.out 2>&1
+    bash /opt/ovfconfig.sh > /opt/ovfconfig.out 2>&1
     
     /opt/unetlab/wrappers/unl_wrapper -a fixpermissions
   owner: root:root
@@ -103,6 +122,10 @@ write_files:
         proxy_set_header Host \$host;
         proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
         proxy_set_header X-Real-IP \$remote_addr;
+        
+        proxy_http_version 1.1;        
+        proxy_set_header Upgrade \$http_upgrade;
+        proxy_set_header Connection \$http_connection;
         }
     }
     EOT
