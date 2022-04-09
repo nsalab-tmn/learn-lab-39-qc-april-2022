@@ -1,7 +1,7 @@
 #!/bin/bash
 
 record=$(cat /tmp/dns_add_record.out | jq -r .host)
-export url=${record::-1}
+export url="https://${record::-1}"
 export filter="200 OK"
 export counter=200
 export sleep=5
