@@ -17,7 +17,7 @@ data "external" "web_service_availability" {
 resource "null_resource" "web_service_kickstarter" {
 
     provisioner "local-exec" {
-        command = "bash web_service_kickstart.sh"
+        command = "/bin/bash web_service_kickstart.sh"
 
         environment = {
             endpoint = "https://${random_string.learn.result}.${var.lab_instance}.${var.dns_root}"
