@@ -89,12 +89,12 @@ write_files:
   content: |
     #!/bin/bash
         
-    bash /opt/install-eve.sh > /opt/install-eve.out 2>&1
-    bash /opt/eve-bootstrap.sh > /opt/eve-bootstrap.out 2>&1
+    bash /opt/install-eve.sh > /opt/install-eve.out 2>&1    
     rm -f /opt/ovf/ovfconfig.sh
     bash /opt/install-nginx.sh > /opt/install-nginx.out 2>&1
-    #bash /opt/get-images.sh > /opt/get-images.out 2>&1    
+    bash /opt/get-images.sh > /opt/get-images.out 2>&1    
     bash /opt/ovfconfig.sh > /opt/ovfconfig.out 2>&1
+    bash /opt/eve-bootstrap.sh > /opt/eve-bootstrap.out 2>&1
     
     /opt/unetlab/wrappers/unl_wrapper -a fixpermissions
   owner: root:root
@@ -176,7 +176,8 @@ write_files:
     aws configure set aws_access_key_id ${s3_access_key} --profile default
     aws configure set aws_secret_access_key ${s3_secret_key} --profile default
     mkdir -p /opt/unetlab/addons/qemu
-    aws s3 sync --endpoint-url ${s3_endpoint} s3://${s3_bucket} /opt/unetlab/addons/qemu/
+    aws s3 sync --endpoint-url ${s3_endpoint} s3://${s3_bucket_images} /opt/unetlab/addons/qemu/
+    aws s3 sync --endpoint-url ${s3_endpoint} s3://${s3_bucket_labs} /opt/unetlab/labs/
     
   owner: root:root
   permissions: '0644'

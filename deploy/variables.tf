@@ -53,9 +53,14 @@ variable "s3_endpoint" {
     default     = "https://s3.sbcloud.online"
 }
 
-variable "s3_bucket" {
+variable "s3_bucket_images" {
     type        = string
-    default     = "qc2022-images"
+    default     = "nsalab/images/${var.lab_instance}"
+}
+
+variable "s3_bucket_labs" {
+    type        = string
+    default     = "nsalab/eve-labs/${var.lab_instance}"
 }
 
 variable "s3_access_key" {
