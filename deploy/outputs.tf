@@ -7,7 +7,7 @@ output "learn_rg" {
 }
 
 output "learn_user" {
-  value       = restapi_object.password.api_data.login
+  value       = restapi_object.user.api_data.login
   description = "Main User"
   depends_on  = []
 }

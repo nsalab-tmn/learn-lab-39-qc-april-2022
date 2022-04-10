@@ -10,7 +10,7 @@ data "external" "web_service_availability" {
 
   depends_on = [
       resource.rustack_vm.ubuntu16,
-      resource.null_resource.dns_provisioner
+      resource.restapi_object.dns_a
   ]
 }
 
@@ -23,7 +23,7 @@ resource "null_resource" "web_service_kickstarter" {
             endpoint = "https://${random_string.learn.result}.${var.lab_instance}.${var.dns_root}"
             login = "admin"
             old_password = "eve"
-            new_password = jsondecode(restapi_object.password.api_response).password
+            new_password = data.external.password.result.password
             lab = "nat-test.unl"
 
         }
