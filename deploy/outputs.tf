@@ -1,13 +1,13 @@
 
 
-output "learn_rg" {
+output "learn_url" {
   value       = "https://${random_string.learn.result}.${var.lab_instance}.${var.dns_root}"
-  description = "Main resource group"
+  description = "Main portal address"
   depends_on  = []
 }
 
 output "learn_user" {
-  value       = data.external.user.result.login
+  value       = "admin"
   description = "Main User"
   depends_on  = []
 }
@@ -19,16 +19,16 @@ output "learn_password" {
   depends_on  = []
 }
 
+
+
+/*
+
 output "web_service" {
   value       = data.external.web_service_availability.result
   depends_on  = [
     data.external.web_service_availability
   ]
 }
-
-/*
-
-
 
 output "dynamic-params" {
   value = {

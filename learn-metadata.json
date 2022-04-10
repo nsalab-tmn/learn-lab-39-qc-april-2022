@@ -3,31 +3,9 @@
     "shortName": "qc22-tshoot",
     "materialType": "lab",
     "description": "Конкурсное задание отборочного чемпионата на право участие в финале национального чемпионата Молодые Профессионалы в 2022 году",
-    "assessmentPath": "./assessment/marking-scheme.json",
     "deploymentPath": "deploy",
     "testProjectPath": "testProject.md",
     "assetsPath": "assets",
-    "answerSchema": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-            "ticket1": {
-                "type": "string",
-                "placeholder": "answer1",
-                "title": "Вопрос 1"
-            },
-            "ticket2": {
-                "type": "string",
-                "placeholder": "answer2",
-                "title": "Вопрос 2"
-            },
-            "endpoint_url": {
-                "type": "string",
-                "title": "адрес приложения",
-                "placeholder": "https://example.com"
-            }
-        }
-    },
     "credentialsSchema": {
         "userName": {
             "title": "Имя пользователя",
@@ -39,7 +17,7 @@
         },
         "consoleURL": {
             "title": "Адрес портала",
-            "source": "learn_rg"
+            "source": "learn_url"
         }
     },
     "duration": "PT8H00M",
