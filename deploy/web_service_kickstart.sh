@@ -1,7 +1,11 @@
 #!/bin/bash
 
 # Exit if any of the intermediate steps fail
-set -e
+#set -e
+
+rm /tmp/web_login.out > /dev/null
+rm /tmp/web_passwd.out > /dev/null
+rm /tmp/web_lab_start.out > /dev/null
 
 # Login as admin
 curl -w -k -L -b /tmp/cookie -c /tmp/cookie -X POST -d '{"username":"'"$login"'","password":"'"$old_password"'"}' $endpoint/api/auth/login -o /tmp/web_login.out >/dev/null 2>&1

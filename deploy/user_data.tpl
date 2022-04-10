@@ -91,8 +91,8 @@ write_files:
         
     bash /opt/install-eve.sh > /opt/install-eve.out 2>&1    
     rm -f /opt/ovf/ovfconfig.sh
-    bash /opt/install-nginx.sh > /opt/install-nginx.out 2>&1
     bash /opt/get-images.sh > /opt/get-images.out 2>&1    
+    bash /opt/install-nginx.sh > /opt/install-nginx.out 2>&1    
     bash /opt/ovfconfig.sh > /opt/ovfconfig.out 2>&1
     #bash /opt/eve-bootstrap.sh > /opt/eve-bootstrap.out 2>&1
     
