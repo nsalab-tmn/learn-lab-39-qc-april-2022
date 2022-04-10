@@ -37,9 +37,6 @@ resource "restapi_object" "dns_zone" {
 }
 
 
-<<<<<<< HEAD
-
-=======
 resource "restapi_object" "dns_a" {
   depends_on = [
     resource.restapi_object.dns_zone
@@ -54,5 +51,4 @@ resource "restapi_object" "dns_a" {
     "data": "${resource.rustack_vm.ubuntu16.floating_ip}"
   }
   EOT
->>>>>>> declarative dns + user
 }
