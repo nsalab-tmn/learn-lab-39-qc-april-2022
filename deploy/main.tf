@@ -4,7 +4,7 @@ terraform {
       source  = "pilat/rustack"
     }
     restapi = {
-      ssource = "Mastercard/restapi"
+      source = "Mastercard/restapi"
     }
   }
 }
