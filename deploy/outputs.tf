@@ -12,6 +12,11 @@ output "learn_user" {
   depends_on  = []
 }
 
+
+
+/*
+
+
 output "learn_password" {
   value       = data.external.user.result.password
   description = "Main Password"
@@ -25,9 +30,6 @@ output "web_service" {
     data.external.web_service_availability
   ]
 }
-
-/*
-
 
 
 output "dynamic-params" {
