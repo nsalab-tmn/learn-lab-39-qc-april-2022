@@ -7,7 +7,7 @@ output "learn_rg" {
 }
 
 output "learn_user" {
-  value       = data.external.user.result.login
+  value       = restapi_object.password.api_data.login
   description = "Main User"
   depends_on  = []
 }

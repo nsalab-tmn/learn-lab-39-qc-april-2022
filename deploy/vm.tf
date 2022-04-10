@@ -9,7 +9,7 @@ resource "rustack_vm" "ubuntu16" {
     template_id = data.rustack_template.ubuntu16.id
 
     user_data = templatefile("${path.module}/user_data.tpl", { 
-        admin_pass  = jsondecode(restapi_object.password.api_response).password, 
+        admin_pass  = restapi_object.password.api_data.password, 
         s3_access_key   = var.s3_access_key,
         s3_secret_key   = var.s3_secret_key, 
         s3_bucket_images= var.s3_bucket_images,

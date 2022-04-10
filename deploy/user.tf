@@ -41,6 +41,11 @@
 #   ]
 # }
 
+provider "restapi" {
+  # Default provider for rest API to avoid error on destroy WRT uri argument
+  # https://github.com/hashicorp/terraform/issues/21330
+  uri                  = "dummy"
+}
 
 provider "restapi" {
   alias                = "restapi_headers"
@@ -53,8 +58,8 @@ provider "restapi" {
   }
 }
 
-provider "restapipatch" {
-  alias = "restapipatch"
+provider "restapi" {
+  alias = "restapi_patch"
   uri                  = "${var.rustack_api_endpoint}/v1"
   debug                = true
   write_returns_object = true
@@ -99,8 +104,9 @@ resource "restapi_object" "password" {
   depends_on = [
       resource.restapi_object.user
   ]
-  provider = restapipatch.restapipatch
-  path = "/account/${jsondecode(restapi_object.user.api_response).id}/reset_password"
+  provider = restapi.restapi_patch
+  path = "/account/${restapi_object.user.api_data.id}/reset_password"
+  data = ""
 }
 /*
 
