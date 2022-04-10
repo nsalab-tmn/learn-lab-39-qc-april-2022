@@ -41,42 +41,11 @@
 #   ]
 # }
 
-provider "restapi" {
-  # Default provider for rest API to avoid error on destroy WRT uri argument
-  # https://github.com/hashicorp/terraform/issues/21330
-  uri                  = "dummy"
-}
-
-provider "restapi" {
-  alias                = "restapi_headers"
-  uri                  = "${var.rustack_api_endpoint}/v1"
-  debug                = true
-  write_returns_object = true
-
-  headers = {
-    Authorization = "Bearer ${var.rustack_root_token}"
-  }
-}
-
-provider "restapi" {
-  alias = "restapi_patch"
-  uri                  = "${var.rustack_api_endpoint}/v1"
-  debug                = true
-  write_returns_object = true
-
-  headers = {
-    Authorization = "Bearer ${var.rustack_root_token}"
-  }
-  
-  create_method  = "PATCH"
-  update_method  = "PATCH"
-  destroy_method = "PATCH"
-}
 
 resource "restapi_object" "user" {
-  depends_on = [
-      resource.rustack_project.project
-  ]
+  # depends_on = [
+  #     resource.rustack_project.project
+  # ]
   provider = restapi.restapi_headers
   path = "/account"
   data = <<-EOT
@@ -98,15 +67,46 @@ resource "restapi_object" "user" {
       ]
   }
   EOT
+  destroy_method = "PATCH"
+  destroy_path = "/account/{id}/unregister"
 }
 
-resource "restapi_object" "password" {
+resource "restapi_object" "userproject" {
   depends_on = [
       resource.restapi_object.user
   ]
-  provider = restapi.restapi_patch
-  path = "/account/${restapi_object.user.api_data.id}/reset_password"
-  data = ""
+  provider = restapi.restapi_headers
+  create_method = "PUT"
+  destroy_method = "DELETE"
+  read_method = "GET"
+  path = "/client/${element(jsondecode(restapi_object.user.api_response).entities,0).entity.id}/team/${element(jsondecode(restapi_object.user.api_response).entities,0).member_id}"
+  read_path = "/client/${element(jsondecode(restapi_object.user.api_response).entities,0).entity.id}/team/${element(jsondecode(restapi_object.user.api_response).entities,0).member_id}"
+  create_path = "/client/${element(jsondecode(restapi_object.user.api_response).entities,0).entity.id}/team/${element(jsondecode(restapi_object.user.api_response).entities,0).member_id}"
+  destroy_path = "/client/${element(jsondecode(restapi_object.user.api_response).entities,0).entity.id}/team/${element(jsondecode(restapi_object.user.api_response).entities,0).member_id}"
+  data = <<-EOT
+  {
+    "user": "${restapi_object.user.api_data.id}",
+    "role": "client_user",
+    "acl_list": [
+      {
+        "id": "${resource.rustack_project.project.id}",
+        "type": "project"
+      }
+    ]
+  }
+  EOT
+}
+
+data "external" "password" {
+  depends_on = [
+      resource.restapi_object.user
+  ]
+  program = ["/bin/bash", "${path.module}/user_reset_password.sh"]
+  query = {
+    endpoint = var.rustack_api_endpoint
+    user_id = restapi_object.user.api_data.id
+    bearer = var.rustack_root_token
+  }
 }
 /*
 
