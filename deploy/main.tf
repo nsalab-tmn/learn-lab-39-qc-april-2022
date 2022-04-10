@@ -6,6 +6,9 @@ terraform {
     restapi = {
       source = "Mastercard/restapi"
     }
+    restapipatch = {
+      source = "Mastercard/restapi"
+    }
   }
 }
 

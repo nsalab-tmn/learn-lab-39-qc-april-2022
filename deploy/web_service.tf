@@ -23,7 +23,7 @@ resource "null_resource" "web_service_kickstarter" {
             endpoint = "https://${random_string.learn.result}.${var.lab_instance}.${var.dns_root}"
             login = "admin"
             old_password = "eve"
-            new_password = data.external.user.result.password
+            new_password = jsondecode(restapi_object.password.api_response).password
             lab = "nat-test.unl"
 
         }

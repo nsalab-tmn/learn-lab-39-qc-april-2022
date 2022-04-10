@@ -53,6 +53,21 @@ provider "restapi" {
   }
 }
 
+provider "restapipatch" {
+  alias = "restapipatch"
+  uri                  = "${var.rustack_api_endpoint}/v1"
+  debug                = true
+  write_returns_object = true
+
+  headers = {
+    Authorization = "Bearer ${var.rustack_root_token}"
+  }
+  
+  create_method  = "PATCH"
+  update_method  = "PATCH"
+  destroy_method = "PATCH"
+}
+
 resource "restapi_object" "user" {
   depends_on = [
       resource.rustack_project.project
@@ -78,6 +93,14 @@ resource "restapi_object" "user" {
       ]
   }
   EOT
+}
+
+resource "restapi_object" "password" {
+  depends_on = [
+      resource.restapi_object.user
+  ]
+  provider = restapipatch.restapipatch
+  path = "/account/${jsondecode(restapi_object.user.api_response).id}/reset_password"
 }
 /*
 
