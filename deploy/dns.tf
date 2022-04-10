@@ -16,10 +16,10 @@ resource "null_resource" "dns_provisioner" {
         command = "/bin/bash dns_deprovisioner.sh"
         when = destroy
    }
-
+*/
     depends_on = [
       resource.rustack_vm.ubuntu16
   ]
-*/
+
 
 }
