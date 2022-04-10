@@ -11,7 +11,7 @@ resource "null_resource" "dns_provisioner" {
             ip_address  = "${resource.rustack_vm.ubuntu16.floating_ip}"
         }
     }
-
+/*
     provisioner "local-exec" {
         command = "/bin/bash dns_deprovisioner.sh"
         when = destroy
@@ -20,5 +20,6 @@ resource "null_resource" "dns_provisioner" {
     depends_on = [
       resource.rustack_vm.ubuntu16
   ]
+*/
 
 }
