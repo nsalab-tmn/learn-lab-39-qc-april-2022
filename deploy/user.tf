@@ -16,12 +16,12 @@ resource "null_resource" "user_provisioner" {
             project = "${resource.rustack_project.project.id}"
         }
     }
-
+/*
     provisioner "local-exec" {
         command = "/bin/bash user_deprovisioner.sh"
         when = destroy
    }
-
+*/
     depends_on = [
       resource.rustack_project.project
   ]
