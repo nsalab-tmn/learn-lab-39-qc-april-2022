@@ -3,8 +3,8 @@
 record=$(cat /tmp/dns_add_record.out | jq -r .host)
 export url="https://${record::-1}"
 export filter="200 OK"
-export counter=200
-export sleep=5
+export counter=20
+export sleep=60
 
 initial=$counter
 timeout=true
