@@ -17,7 +17,7 @@
         },
         "consoleURL": {
             "title": "Адрес портала",
-            "source": "learn_url"
+            "source": "URL"
         }
     },
     "duration": "PT8H00M",

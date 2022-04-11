@@ -1,6 +1,6 @@
 
 
-output "learn_url" {
+output "URL" {
   value       = "https://${random_string.learn.result}.${var.lab_instance}.${var.dns_root}"
   description = "Main portal address"
   depends_on  = []
