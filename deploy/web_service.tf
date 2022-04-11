@@ -24,7 +24,7 @@ resource "null_resource" "web_service_kickstarter" {
             login = "admin"
             old_password = "eve"
             new_password = data.external.user.result.password
-            lab = "nat-test.unl"
+            lab = "qc22.unl"
 
         }
     }
