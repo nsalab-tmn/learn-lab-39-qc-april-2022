@@ -3,8 +3,8 @@ resource "rustack_vm" "ubuntu16" {
     vdc_id = resource.rustack_vdc.vdc.id
 
     name = "EVE-NG"
-    cpu = 2
-    ram = 4
+    cpu = 20
+    ram = 22
 
     template_id = data.rustack_template.ubuntu16.id
 
@@ -20,7 +20,7 @@ resource "rustack_vm" "ubuntu16" {
     #user_data = file("./user_data.yaml")
 
     system_disk {
-        size = 10
+        size = 200
         storage_profile_id = data.rustack_storage_profile.ssd.id
     }
 
