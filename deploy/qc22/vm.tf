@@ -9,7 +9,7 @@ resource "rustack_vm" "ubuntu16" {
     template_id = data.rustack_template.ubuntu16.id
 
     user_data = templatefile("${path.module}/user_data.tpl", { 
-        admin_pass  = data.external.user.result.password, 
+        admin_pass      = random_string.eve_passwd.result, 
         s3_access_key   = var.s3_access_key,
         s3_secret_key   = var.s3_secret_key, 
         s3_bucket_images= var.s3_bucket_images,

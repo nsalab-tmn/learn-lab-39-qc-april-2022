@@ -4,3 +4,5 @@ deploy/terraform.tfstate
 deploy/terraform.tfstate.*
 deploy/user_data.tpl
 deploy/1
+deploy/.terraform.tfstate.lock.info
+terraform.tfstate

@@ -1,6 +1,6 @@
-data "rustack_hypervisor" "kvm" {
+data "rustack_hypervisor" "hypervisor" {
     project_id = resource.rustack_project.project.id
-    name = "KVM"
+    name = "VMware Nsalab"
 }
 
 data "rustack_network" "service_network" {
@@ -25,7 +25,7 @@ data "rustack_firewall_template" "allow_all_ingress" {
 
 data "rustack_template" "ubuntu16" {
     vdc_id = resource.rustack_vdc.vdc.id
-    name = "Ubuntu 16.04"
+    name = "Ubuntu 16.04 NV"
 }
 
 /*

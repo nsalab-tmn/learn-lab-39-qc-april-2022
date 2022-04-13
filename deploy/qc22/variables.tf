@@ -50,7 +50,7 @@ variable "rustack_api_endpoint" {
 
 variable "s3_endpoint" {
     type        = string
-    default     = "https://s3.sbcloud.online"
+    default     = "https://s3.sbcloud.ru:8082"
 }
 
 variable "s3_bucket_images" {

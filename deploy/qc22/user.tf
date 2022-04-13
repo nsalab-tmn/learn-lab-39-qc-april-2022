@@ -1,7 +1,8 @@
+/*
 resource "null_resource" "user_provisioner" {
 
     provisioner "local-exec" {
-        command = "/bin/bash user_provisioner.sh"
+        command = "/bin/bash ${path.module}/user_provisioner.sh"
 
         environment = {
             endpoint = "${var.rustack_api_endpoint}"
@@ -16,19 +17,19 @@ resource "null_resource" "user_provisioner" {
             project = "${resource.rustack_project.project.id}"
         }
     }
-/*
+
     provisioner "local-exec" {
-        command = "/bin/bash user_deprovisioner.sh"
+        command = "/bin/bash ${path.module}/user_deprovisioner.sh"
         when = destroy
    }
-*/
+
     depends_on = [
       resource.rustack_project.project
   ]
 }
 
 data "external" "user" {
-  program = ["/bin/bash", "user_data_provider.sh"]
+  program = ["/bin/bash", "${path.module}/user_data_provider.sh"]
 
   query = {
     endpoint = "${var.rustack_api_endpoint}"
@@ -44,7 +45,7 @@ data "external" "user" {
 
 
 
-/*
+
 
 
 

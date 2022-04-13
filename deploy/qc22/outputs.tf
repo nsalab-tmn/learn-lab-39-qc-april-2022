@@ -13,7 +13,7 @@ output "learn_user" {
 }
 
 output "learn_password" {
-  value       = data.external.user.result.password
+  value       = random_string.eve_passwd.result
   description = "Main Password"
   sensitive = false
   depends_on  = []
