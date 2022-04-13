@@ -16,7 +16,7 @@ data "external" "web_service_availability" {
   ]
 
 }
-
+/*
 resource "null_resource" "web_service_kickstarter" {
 
     provisioner "local-exec" {
@@ -37,3 +37,4 @@ resource "null_resource" "web_service_kickstarter" {
       data.external.web_service_availability
   ]
 }
+*/
